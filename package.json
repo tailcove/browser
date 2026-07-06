@@ -1,0 +1,103 @@
+{
+    "name": "@tailcove/browser",
+    "version": "0.1.0",
+    "description": "Browser client for Tailcove — error/log capture from the frontend, with React, Vue, Svelte, and Next.js adapters.",
+    "license": "MIT",
+    "type": "module",
+    "keywords": ["logging", "tailcove", "browser", "error-tracking", "react", "vue", "svelte", "nextjs"],
+    "files": ["dist"],
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            },
+            "require": {
+                "types": "./dist/index.d.cts",
+                "default": "./dist/index.cjs"
+            }
+        },
+        "./react": {
+            "import": {
+                "types": "./dist/react.d.ts",
+                "default": "./dist/react.js"
+            },
+            "require": {
+                "types": "./dist/react.d.cts",
+                "default": "./dist/react.cjs"
+            }
+        },
+        "./vue": {
+            "import": {
+                "types": "./dist/vue.d.ts",
+                "default": "./dist/vue.js"
+            },
+            "require": {
+                "types": "./dist/vue.d.cts",
+                "default": "./dist/vue.cjs"
+            }
+        },
+        "./svelte": {
+            "import": {
+                "types": "./dist/svelte.d.ts",
+                "default": "./dist/svelte.js"
+            },
+            "require": {
+                "types": "./dist/svelte.d.cts",
+                "default": "./dist/svelte.cjs"
+            }
+        },
+        "./nextjs": {
+            "import": {
+                "types": "./dist/nextjs.d.ts",
+                "default": "./dist/nextjs.js"
+            },
+            "require": {
+                "types": "./dist/nextjs.d.cts",
+                "default": "./dist/nextjs.cjs"
+            }
+        }
+    },
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit"
+    },
+    "peerDependencies": {
+        "react": ">=17",
+        "vue": ">=3",
+        "svelte": ">=4"
+    },
+    "peerDependenciesMeta": {
+        "react": {
+            "optional": true
+        },
+        "vue": {
+            "optional": true
+        },
+        "svelte": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@testing-library/react": "^16.0.0",
+        "@types/react": "^18.3.0",
+        "@types/react-dom": "^18.3.0",
+        "jsdom": "^25.0.0",
+        "react": "^18.3.0",
+        "react-dom": "^18.3.0",
+        "svelte": "^4.2.0",
+        "tsup": "^8.3.5",
+        "typescript": "^5.7.2",
+        "vitest": "^3.0.0",
+        "vue": "^3.5.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
