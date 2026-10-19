@@ -1,9 +1,9 @@
 import { pageContext } from './context.js';
+import { normalizeLevel } from './levels.js';
 import {
     registerForLifecycleFlush,
     unregisterFromLifecycleFlush,
 } from './lifecycle.js';
-import { normalizeLevel } from './levels.js';
 import { sendViaBeacon, sendViaFetch } from './transport.js';
 import type { LogContext, LogLevel, LogLine, TailcoveOptions } from './types.js';
 
