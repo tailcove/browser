@@ -50,14 +50,14 @@ type SendBeaconMock = ReturnType<
  */
 export function stubSendBeacon(returns = true): SendBeaconMock {
     const beaconMock: SendBeaconMock = vi.fn(() => returns);
-     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (navigator as any).sendBeacon = beaconMock;
 
     return beaconMock;
 }
 
 export function removeSendBeacon(): void {
-     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     delete (navigator as any).sendBeacon;
 }
 
