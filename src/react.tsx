@@ -1,10 +1,5 @@
-import React, {
-    createContext,
-    useContext,
-    useRef
-    
-} from 'react';
-import type {ReactNode} from 'react';
+import React, { createContext, useContext, useRef } from 'react';
+import type { ReactNode } from 'react';
 import { installAutoCapture } from './capture.js';
 import { Tailcove } from './client.js';
 import { formatError } from './exception.js';
