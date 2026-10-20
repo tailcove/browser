@@ -1,6 +1,6 @@
 {
     "name": "@tailcove/browser",
-    "version": "0.1.0",
+    "version": "0.1.1-rc.0",
     "description": "Browser client for Tailcove — error/log capture from the frontend, with React, Vue, Svelte, and Next.js adapters.",
     "license": "MIT",
     "repository": {
@@ -8,8 +8,19 @@
         "url": "git+https://github.com/tailcove/browser.git"
     },
     "type": "module",
-    "keywords": ["logging", "tailcove", "browser", "error-tracking", "react", "vue", "svelte", "nextjs"],
-    "files": ["dist"],
+    "keywords": [
+        "logging",
+        "tailcove",
+        "browser",
+        "error-tracking",
+        "react",
+        "vue",
+        "svelte",
+        "nextjs"
+    ],
+    "files": [
+        "dist"
+    ],
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
