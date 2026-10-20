@@ -12,7 +12,6 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@tailcove/browser"><img alt="npm version" src="https://img.shields.io/npm/v/@tailcove/browser?label=%40tailcove%2Fbrowser&color=2DD4BF&labelColor=0A0A0A"></a>
-  <a href="https://www.npmjs.com/package/@tailcove/browser"><img alt="npm downloads" src="https://img.shields.io/npm/dm/@tailcove/browser?color=2DD4BF&labelColor=0A0A0A"></a>
   <img alt="Types included" src="https://img.shields.io/badge/types-included-2DD4BF?labelColor=0A0A0A">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-2DD4BF?labelColor=0A0A0A"></a>
 </p>
@@ -23,36 +22,11 @@
 
 <br>
 
-<table>
-  <tr>
-    <td width="33%" valign="top">
-      <h4>🔎 &nbsp;Catches real errors</h4>
-      Opt in to uncaught errors, unhandled rejections and <code>console.error</code>, next to your backend logs.
-    </td>
-    <td width="33%" valign="top">
-      <h4>📮 &nbsp;Reliable on page close</h4>
-      Flushes with <code>sendBeacon</code> when a tab is hidden or closed, so the last log isn't lost.
-    </td>
-    <td width="33%" valign="top">
-      <h4>🛡️ &nbsp;Safe</h4>
-      A failed delivery is caught and dropped. Logging will never break your page.
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" valign="top">
-      <h4>🧱 &nbsp;Any framework</h4>
-      React, Vue, Svelte and Next.js helpers, or a plain <code>&lt;script&gt;</code> tag.
-    </td>
-    <td width="33%" valign="top">
-      <h4>🧩 &nbsp;One shared issue</h4>
-      A browser error groups with the matching server error, because both use the same shape.
-    </td>
-    <td width="33%" valign="top">
-      <h4>🔑 &nbsp;Public by design</h4>
-      A browser key is meant to ship in your front-end. Allowed origins control access.
-    </td>
-  </tr>
-</table>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/features-browser-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/features-browser-light.svg">
+  <img alt="@tailcove/browser features" src="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/features-browser-dark.svg" width="100%">
+</picture>
 
 <br>
 
@@ -229,16 +203,21 @@ Network errors and non-2xx responses never throw into your page. They go to `onE
 - **Bugs and feature requests:** [open an issue](https://github.com/tailcove/browser/issues/new/choose)
 - **Security problems:** please email **security@tailcove.dev** instead of opening a public issue.
 
-## Other Tailcove libraries
-
-[Laravel](https://github.com/tailcove/laravel) · [Node.js](https://github.com/tailcove/node) · [Python](https://github.com/tailcove/python)
-
-## License
-
-[MIT](LICENSE) © AKCybex
-
 <br>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/footer-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/footer-light.svg">
+  <img alt="Tailcove. Built by AKCybex." src="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/footer-dark.svg" width="100%">
+</picture>
+
 <p align="center">
-  <sub>Built by <a href="https://akcybex.com">AKCybex</a> &nbsp;·&nbsp; <a href="https://tailcove.dev">tailcove.dev</a></sub>
+  <a href="https://tailcove.dev/docs/sending-logs/browser">Documentation</a> &nbsp;·&nbsp;
+  <a href="https://app.tailcove.dev/register">Get started free</a> &nbsp;·&nbsp;
+  <a href="https://github.com/tailcove/browser/issues/new/choose">Report a bug</a> &nbsp;·&nbsp;
+  <a href="LICENSE">MIT License</a>
+</p>
+
+<p align="center">
+  <sub>More Tailcove libraries: <a href="https://github.com/tailcove/laravel">Laravel</a> &nbsp;·&nbsp; <a href="https://github.com/tailcove/node">Node.js</a> &nbsp;·&nbsp; <a href="https://github.com/tailcove/python">Python</a></sub>
 </p>
