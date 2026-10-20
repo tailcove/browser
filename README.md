@@ -16,9 +16,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/meta-browser-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/meta-browser-light.svg">
-    <img alt="@tailcove/browser facts" src="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/meta-browser-dark.svg" height="34">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/stats-browser-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/stats-browser-light.svg">
+    <img alt="@tailcove/browser at a glance" src="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/stats-browser-dark.svg">
   </picture>
 </p>
 
