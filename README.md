@@ -1,128 +1,132 @@
-# @tailcove/browser
+<h1 align="center">@tailcove/browser</h1>
 
-Browser client for [Tailcove](https://tailcove.dev) — ship logs and
-captured errors straight from the frontend. Batches up to 20 lines (or 2
-seconds, whichever comes first); flushes reliably on tab hide/page unload
-via `navigator.sendBeacon`. A delivery failure never throws into your
-app — it's dropped silently unless you pass `onError`.
+<p align="center">
+  Send logs and frontend errors from the browser to <a href="https://tailcove.dev">Tailcove</a>.<br>
+  Batched, reliable on page close, and it never breaks your page.
+</p>
 
-Authenticated with a **browser key**, not the server-side ingest token —
-a browser key is meant to be public (it ships in client-side JS), and
-access is controlled by the allowed origins you configure for it in the
-source's Settings tab, not by keeping the key secret. Generate one there
-before using this package.
+<p align="center">
+  <a href="https://www.npmjs.com/package/@tailcove/browser"><img alt="npm version" src="https://img.shields.io/npm/v/@tailcove/browser?color=2DD4BF&labelColor=0A0A0A"></a>
+  <a href="https://www.npmjs.com/package/@tailcove/browser"><img alt="npm downloads" src="https://img.shields.io/npm/dm/@tailcove/browser?color=2DD4BF&labelColor=0A0A0A"></a>
+  <img alt="Types included" src="https://img.shields.io/badge/types-included-2DD4BF?labelColor=0A0A0A">
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-2DD4BF?labelColor=0A0A0A"></a>
+</p>
+
+<p align="center">
+  <a href="https://tailcove.dev/docs/sending-logs/browser">Documentation</a> ·
+  <a href="https://github.com/tailcove/browser/issues">Report a bug</a> ·
+  <a href="https://app.tailcove.dev/register">Get started free</a>
+</p>
+
+---
+
+## Why use it
+
+- **Catches real errors.** Opt in to uncaught errors, unhandled promise rejections and `console.error`, and see them next to your backend logs.
+- **Doesn't lose the last log.** When a tab is hidden or closed, the client flushes with `navigator.sendBeacon`, which keeps going while the page unloads.
+- **Safe.** A failed delivery is caught and dropped. Logging will never be the reason your page breaks.
+- **Works anywhere.** Use it with a bundler, with a plain `<script>` tag, or through the React, Vue, Svelte and Next.js helpers.
+- **Typed.** Written in TypeScript, with ESM and CommonJS builds.
 
 ## Install
 
-### npm / a bundler
+**With a bundler**
 
 ```bash
 npm install @tailcove/browser
 ```
 
+**With a plain `<script>` tag (no build step)**
+
+```html
+<script src="https://unpkg.com/@tailcove/browser/dist/tailcove.umd.global.js"></script>
+```
+
+## Quick start
+
+**1. Get a browser key.** In your [Tailcove dashboard](https://app.tailcove.dev), open your source's **Settings** tab and create a browser key. Add the websites that may use it under allowed origins.
+
+> A browser key is **meant to be public**. It ships in your front-end code, so don't treat it like a password. Access is controlled by the allowed origins you set. This is different from the server-side ingest token used by `@tailcove/node`, which must stay secret.
+
+**2. Send your first log.**
+
 ```ts
 import { init } from '@tailcove/browser';
 
-const tailcove = init({
-    key: '<your source's browser key>',
-});
+const tailcove = init({ key: 'your-browser-key' });
 
 tailcove.error('checkout failed', { orderId: 99 });
 ```
 
-### Plain `<script>` (no build step)
+With the script tag, the same code looks like this:
 
 ```html
-<script src="https://unpkg.com/@tailcove/browser/dist/tailcove.umd.global.js"></script>
 <script>
-    const tailcove = Tailcove.init({ key: '<your source's browser key>' });
-    tailcove.error('checkout failed');
+  const tailcove = Tailcove.init({ key: 'your-browser-key' });
+  tailcove.error('checkout failed');
 </script>
 ```
 
-Level helpers: `debug`, `info`, `notice`, `warning` (`warn` as a
-console-style alias), `error`, `critical`, `alert`, `emergency` — or call
-`log(level, message, context)` directly.
+**3. Open Tailcove.** Your lines appear in search and live tail within a couple of seconds.
 
-## Options
+Level helpers are `debug`, `info`, `notice`, `warning` (with `warn` as a console-style alias), `error`, `critical`, `alert` and `emergency`. You can also call `log(level, message, context)` directly.
 
-| Option | Default | Purpose |
-|---|---|---|
-| `key` | — | The source's browser key. Required. |
-| `endpoint` | `https://ingest.tailcove.dev/api/v1/browser/logs` | Your source's browser ingest URL. |
-| `batchSize` | `20` | Flush once this many lines are buffered. |
-| `batchIntervalMs` | `2000` | Flush once this many milliseconds have passed since the first buffered line, whichever comes first. |
-| `timeoutMs` | `2000` | Milliseconds before a delivery attempt gives up. |
-| `context` | `{}` | Merged into every line's context, underneath the per-call context. |
-| `enabled` | `true` | Set `false` to keep the client silent — nothing is buffered or sent. |
-| `onError` | — | Called with the error when a batch fails to send. Omit to drop failures silently. |
-| `captureWindowErrors` | `false` | Capture uncaught errors via `window.onerror`. |
-| `captureUnhandledRejections` | `false` | Capture unhandled promise rejections. |
-| `captureConsoleErrors` | `false` | Capture `console.error(...)` calls (sampled — see `consoleSampleRate`). |
-| `consoleSampleRate` | `1` | Fraction of `console.error` calls captured when `captureConsoleErrors` is on. |
-| `traceLimit` | `10` | Stack frames kept per captured exception. |
+## Catch errors automatically
 
-Every auto-capture flag is **off by default** — an SDK that captures
-everything out of the box is a noisy SDK. Turn on what you actually want.
-
-## Context enrichment
-
-Every line automatically gets, without any code changes on your end:
-
-- `url` — `window.location.href`
-- `userAgent` — `navigator.userAgent`
-- `viewport` — `{ width, height }`
-
-Pass `context` in the constructor to merge additional fields (e.g. `userId`,
-`plan`) onto every line; per-call context passed to `log()`/`error()`/etc.
-wins on key collision.
-
-## Reliable delivery on unload
-
-A normal `log()`/`error()` call is batched and eventually sent over a
-regular `fetch()`. When the tab is hidden or the page is navigating away
-(`visibilitychange` -> `hidden`, or `pagehide`), the client instead flushes
-via `navigator.sendBeacon` — a fetch already in flight, or a batching timer
-that hasn't fired yet, has no guarantee of completing once the page starts
-unloading, but a beacon does. If `sendBeacon` isn't available (or rejects
-the payload), it falls back to `fetch(..., {keepalive: true})`.
-
-Multiple `Tailcove` instances on one page share a single set of
-`visibilitychange`/`pagehide` listeners rather than each registering their
-own. If you need to tear a client down before the page unloads (e.g. a
-framework adapter unmounting), call `client.destroy()` — it flushes and
-unregisters from the shared listeners.
-
-## Automatic error capture
-
-All three flags are opt-in:
+Nothing is captured until you ask for it. A client that records everything by default is a noisy one, so each switch is off to begin with:
 
 ```ts
 const tailcove = init({
-    key: '...',
-    captureWindowErrors: true,
-    captureUnhandledRejections: true,
-    captureConsoleErrors: true,
-    consoleSampleRate: 0.1, // sample 10% of console.error calls
+    key: 'your-browser-key',
+    captureWindowErrors: true,        // uncaught errors (window.onerror)
+    captureUnhandledRejections: true, // unhandled promise rejections
+    captureConsoleErrors: true,       // console.error(...) calls
+    consoleSampleRate: 0.1,           // keep 10% of console.error calls
 });
 ```
 
-Captured errors are rendered using the same structured exception shape
-every Tailcove client uses (`{class, message, location, trace}`), so a
-browser `TypeError` groups into the same issue as a server-side exception
-with matching class/location/message. `location` is best-effort, parsed
-from the first stack frame — it's only meaningful against an unminified
-build; sourcemap resolution is a future improvement, not something this
-client does today.
+Captured errors use the same structured shape as every Tailcove client (`class`, `message`, `location`, `trace`). A browser `TypeError` therefore groups into the same issue as a matching error from your server.
 
-## React
+`location` comes from the first stack frame, so it is only meaningful for unminified builds. Source map support is not included yet.
+
+## Options
+
+| Option | Default | What it does |
+|---|---|---|
+| `key` | — | Your source's browser key. **Required.** |
+| `endpoint` | `https://ingest.tailcove.dev/api/v1/browser/logs` | The ingest URL. Only change this if you self-host. |
+| `batchSize` | `20` | Send once this many lines are buffered. |
+| `batchIntervalMs` | `2000` | Send once this many milliseconds have passed since the first buffered line. |
+| `timeoutMs` | `2000` | How long a delivery attempt may take before giving up. |
+| `context` | `{}` | Fields added to every line. Per-call context wins if keys clash. |
+| `enabled` | `true` | Set `false` to turn the client off. Nothing is buffered or sent. |
+| `onError` | — | Called with the error when a batch fails to send. Without it, failures are dropped silently. |
+| `captureWindowErrors` | `false` | Capture uncaught errors. |
+| `captureUnhandledRejections` | `false` | Capture unhandled promise rejections. |
+| `captureConsoleErrors` | `false` | Capture `console.error(...)` calls. |
+| `consoleSampleRate` | `1` | Fraction of `console.error` calls kept when `captureConsoleErrors` is on. |
+| `traceLimit` | `10` | Stack frames kept for each captured error. |
+
+## What gets added automatically
+
+| Field | Value |
+|---|---|
+| `url` | `window.location.href` |
+| `userAgent` | `navigator.userAgent` |
+| `viewport` | `{ width, height }` |
+
+Add your own fields to every line with the `context` option, for example `userId` or `plan`.
+
+## Frameworks
+
+### React
 
 ```tsx
 import { ErrorBoundary, TailcoveProvider } from '@tailcove/browser/react';
 
 function App() {
     return (
-        <TailcoveProvider options={{ key: '...' }}>
+        <TailcoveProvider options={{ key: 'your-browser-key' }}>
             <ErrorBoundary fallback={<p>Something went wrong.</p>}>
                 <YourApp />
             </ErrorBoundary>
@@ -131,39 +135,36 @@ function App() {
 }
 ```
 
-`ErrorBoundary` also accepts an explicit `client` prop instead of reading
-from `TailcoveProvider`, and a function `fallback={(error) => ...}` if you
-want the caught error in your fallback UI.
+`ErrorBoundary` also takes an explicit `client` prop, and `fallback` can be a function, `(error) => ...`, if you want to show the error.
 
-## Vue
+### Vue
 
 ```ts
 import { createApp } from 'vue';
 import TailcovePlugin from '@tailcove/browser/vue';
 
 const app = createApp(App);
-app.use(TailcovePlugin, { key: '...' });
+app.use(TailcovePlugin, { key: 'your-browser-key' });
 ```
 
-Wires `app.config.errorHandler` — chains any handler you'd already
-registered rather than replacing it.
+The plugin hooks `app.config.errorHandler` and chains any handler you already registered.
 
-## Svelte (SvelteKit)
+### Svelte (SvelteKit)
 
 ```ts
 // src/hooks.client.ts
 import { createTailcoveHandleError } from '@tailcove/browser/svelte';
 
-export const handleError = createTailcoveHandleError({ key: '...' });
+export const handleError = createTailcoveHandleError({ key: 'your-browser-key' });
 ```
 
-## Next.js
+### Next.js
 
 ```ts
 // instrumentation-client.ts
 import { init } from '@tailcove/browser/nextjs';
 
-export const tailcove = init({ key: '...' });
+export const tailcove = init({ key: 'your-browser-key' });
 ```
 
 ```tsx
@@ -173,11 +174,7 @@ import { useEffect } from 'react';
 import { reportGlobalError } from '@tailcove/browser/nextjs';
 import { tailcove } from '../instrumentation-client';
 
-export default function GlobalError({
-    error,
-}: {
-    error: Error & { digest?: string };
-}) {
+export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
     useEffect(() => reportGlobalError(tailcove, error), [error]);
 
     return (
@@ -188,36 +185,26 @@ export default function GlobalError({
 }
 ```
 
-`@tailcove/browser/nextjs` is **client-side only**. A full-stack Next.js
-app wants both this package (for the browser bundle) and `@tailcove/node`
-(for route handlers, server components, and middleware) — they are not the
-same package.
+`@tailcove/browser/nextjs` runs in the browser only. A full-stack Next.js app wants this package for the browser bundle and [`@tailcove/node`](https://github.com/tailcove/node) for route handlers, server components and middleware.
 
-## Failure handling
+## How delivery works
 
-A delivery failure — a network error or a non-2xx response — never throws
-into your application. It's caught, handed to `onError` if you provided
-one, and otherwise dropped. Logging is best-effort by design; it should
-never be the reason your page breaks.
+Normal calls are batched and sent with `fetch`. When the tab is hidden or the page is leaving (`visibilitychange` to `hidden`, or `pagehide`), the client flushes with `navigator.sendBeacon` instead, because a request already in flight or a timer that has not fired can be cut off while the page unloads, but a beacon is not. If `sendBeacon` is unavailable or rejects the payload, it falls back to `fetch` with `keepalive: true`.
 
-## Publishing (maintainers only)
+Several clients on one page share a single set of unload listeners. To remove a client early, for example when a framework adapter unmounts, call `client.destroy()`. It flushes first, then detaches.
 
-This package ships from `packages/tailcove/browser` under the `@tailcove`
-npm org. It is **not** wired into this repo's own `package.json` or CI —
-it's built and published by hand:
+Network errors and non-2xx responses never throw into your page. They go to `onError` if you set one, and are dropped otherwise.
 
-```bash
-cd packages/tailcove/browser
-npm install
-npm run typecheck
-npm test
-npm run build
+## Help and feedback
 
-npm version patch   # or minor / major
-npm publish --access public
-```
+- **Docs:** [tailcove.dev/docs/sending-logs/browser](https://tailcove.dev/docs/sending-logs/browser)
+- **Bugs and feature requests:** [open an issue](https://github.com/tailcove/browser/issues/new/choose)
+- **Security problems:** please email **security@tailcove.dev** instead of opening a public issue.
 
-`npm publish` requires being logged in (`npm login`) as a member of the
-`@tailcove` org. `--access public` is required the first time a new scoped
-package is published under a free org; harmless to keep passing on every
-release.
+## Other Tailcove libraries
+
+[Laravel](https://github.com/tailcove/laravel) · [Node.js](https://github.com/tailcove/node) · [Python](https://github.com/tailcove/python)
+
+## License
+
+[MIT](LICENSE) © Akcybex
