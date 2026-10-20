@@ -32,4 +32,10 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - run: npm publish --access public
+      - name: Publish
+        run: |
+          # Prereleases (e.g. 0.2.0-rc.0) go out under the "next" tag, never "latest".
+          case "$GITHUB_REF_NAME" in
+            *-*) npm publish --access public --tag next ;;
+            *)   npm publish --access public ;;
+          esac
