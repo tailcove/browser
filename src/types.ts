@@ -47,7 +47,7 @@ export interface LogLine {
 export interface TailcoveOptions {
     /** The source's browser key — public by design, see the log-ingestion skill's "Browser client" section. */
     key: string;
-    /** Defaults to `https://ingest.tailcove.com/api/v1/browser/logs`. */
+    /** Defaults to `https://ingest.tailcove.dev/api/v1/browser/logs`. */
     endpoint?: string;
     /** Flush once this many records are buffered. Defaults to 20. */
     batchSize?: number;

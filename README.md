@@ -1,6 +1,6 @@
 # @tailcove/browser
 
-Browser client for [Tailcove](https://tailcove.com) — ship logs and
+Browser client for [Tailcove](https://tailcove.dev) — ship logs and
 captured errors straight from the frontend. Batches up to 20 lines (or 2
 seconds, whichever comes first); flushes reliably on tab hide/page unload
 via `navigator.sendBeacon`. A delivery failure never throws into your
@@ -49,7 +49,7 @@ console-style alias), `error`, `critical`, `alert`, `emergency` — or call
 | Option | Default | Purpose |
 |---|---|---|
 | `key` | — | The source's browser key. Required. |
-| `endpoint` | `https://ingest.tailcove.com/api/v1/browser/logs` | Your source's browser ingest URL. |
+| `endpoint` | `https://ingest.tailcove.dev/api/v1/browser/logs` | Your source's browser ingest URL. |
 | `batchSize` | `20` | Flush once this many lines are buffered. |
 | `batchIntervalMs` | `2000` | Flush once this many milliseconds have passed since the first buffered line, whichever comes first. |
 | `timeoutMs` | `2000` | Milliseconds before a delivery attempt gives up. |

@@ -7,7 +7,7 @@ import {
 import { sendViaBeacon, sendViaFetch } from './transport.js';
 import type { LogContext, LogLevel, LogLine, TailcoveOptions } from './types.js';
 
-const DEFAULT_ENDPOINT = 'https://ingest.tailcove.com/api/v1/browser/logs';
+const DEFAULT_ENDPOINT = 'https://ingest.tailcove.dev/api/v1/browser/logs';
 const DEFAULT_BATCH_SIZE = 20;
 const DEFAULT_BATCH_INTERVAL_MS = 2000;
 const DEFAULT_TIMEOUT_MS = 2000;
