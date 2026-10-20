@@ -1,8 +1,4 @@
-<a href="https://tailcove.dev/docs/sending-logs/browser"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-light.svg">
-  <img alt="@tailcove/browser: Tailcove for Browser. Version, runtime support, size and license." src="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-dark.svg" width="100%">
-</picture></a>
+<a href="https://tailcove.dev/docs/sending-logs/browser"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-light.svg"><img alt="@tailcove/browser: Tailcove for Browser. Version, runtime support, size and license." src="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-dark.svg" width="100%"></picture></a>
 
 <p align="center">
   <a href="https://tailcove.dev/docs/sending-logs/browser">Documentation</a> &nbsp;·&nbsp;
