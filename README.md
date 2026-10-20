@@ -1,32 +1,60 @@
-<h1 align="center">@tailcove/browser</h1>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-light.svg">
+  <img alt="@tailcove/browser: Tailcove for Browser" src="https://raw.githubusercontent.com/tailcove/.github/main/profile/assets/packages/browser-dark.svg" width="100%">
+</picture>
 
 <p align="center">
-  Send logs and frontend errors from the browser to <a href="https://tailcove.dev">Tailcove</a>.<br>
-  Batched, reliable on page close, and it never breaks your page.
+  <a href="https://tailcove.dev/docs/sending-logs/browser"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-2DD4BF?style=for-the-badge&logoColor=0A0A0A"></a>
+  <a href="https://app.tailcove.dev/register"><img alt="Get started free" src="https://img.shields.io/badge/Get%20started%20free-0A0A0A?style=for-the-badge"></a>
+  <a href="https://github.com/tailcove/browser/issues/new/choose"><img alt="Report a bug" src="https://img.shields.io/badge/Report%20a%20bug-0A0A0A?style=for-the-badge"></a>
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@tailcove/browser"><img alt="npm version" src="https://img.shields.io/npm/v/@tailcove/browser?color=2DD4BF&labelColor=0A0A0A"></a>
+  <a href="https://www.npmjs.com/package/@tailcove/browser"><img alt="npm version" src="https://img.shields.io/npm/v/@tailcove/browser?label=%40tailcove%2Fbrowser&color=2DD4BF&labelColor=0A0A0A"></a>
   <a href="https://www.npmjs.com/package/@tailcove/browser"><img alt="npm downloads" src="https://img.shields.io/npm/dm/@tailcove/browser?color=2DD4BF&labelColor=0A0A0A"></a>
   <img alt="Types included" src="https://img.shields.io/badge/types-included-2DD4BF?labelColor=0A0A0A">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-2DD4BF?labelColor=0A0A0A"></a>
 </p>
 
-<p align="center">
-  <a href="https://tailcove.dev/docs/sending-logs/browser">Documentation</a> ·
-  <a href="https://github.com/tailcove/browser/issues">Report a bug</a> ·
-  <a href="https://app.tailcove.dev/register">Get started free</a>
-</p>
+<br>
 
----
+<h3 align="center">Send logs and frontend errors from the browser to Tailcove.</h3>
 
-## Why use it
+<br>
 
-- **Catches real errors.** Opt in to uncaught errors, unhandled promise rejections and `console.error`, and see them next to your backend logs.
-- **Doesn't lose the last log.** When a tab is hidden or closed, the client flushes with `navigator.sendBeacon`, which keeps going while the page unloads.
-- **Safe.** A failed delivery is caught and dropped. Logging will never be the reason your page breaks.
-- **Works anywhere.** Use it with a bundler, with a plain `<script>` tag, or through the React, Vue, Svelte and Next.js helpers.
-- **Typed.** Written in TypeScript, with ESM and CommonJS builds.
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <h4>🔎 &nbsp;Catches real errors</h4>
+      Opt in to uncaught errors, unhandled rejections and <code>console.error</code>, next to your backend logs.
+    </td>
+    <td width="33%" valign="top">
+      <h4>📮 &nbsp;Reliable on page close</h4>
+      Flushes with <code>sendBeacon</code> when a tab is hidden or closed, so the last log isn't lost.
+    </td>
+    <td width="33%" valign="top">
+      <h4>🛡️ &nbsp;Safe</h4>
+      A failed delivery is caught and dropped. Logging will never break your page.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <h4>🧱 &nbsp;Any framework</h4>
+      React, Vue, Svelte and Next.js helpers, or a plain <code>&lt;script&gt;</code> tag.
+    </td>
+    <td width="33%" valign="top">
+      <h4>🧩 &nbsp;One shared issue</h4>
+      A browser error groups with the matching server error, because both use the same shape.
+    </td>
+    <td width="33%" valign="top">
+      <h4>🔑 &nbsp;Public by design</h4>
+      A browser key is meant to ship in your front-end. Allowed origins control access.
+    </td>
+  </tr>
+</table>
+
+<br>
 
 ## Install
 
@@ -207,4 +235,10 @@ Network errors and non-2xx responses never throw into your page. They go to `onE
 
 ## License
 
-[MIT](LICENSE) © Akcybex
+[MIT](LICENSE) © AKCybex
+
+<br>
+
+<p align="center">
+  <sub>Built by <a href="https://akcybex.com">AKCybex</a> &nbsp;·&nbsp; <a href="https://tailcove.dev">tailcove.dev</a></sub>
+</p>
