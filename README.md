@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://tailcove.dev/docs/sending-logs/browser">Documentation</a> &nbsp;·&nbsp;
-  <a href="https://app.tailcove.dev/register">Get started free</a> &nbsp;·&nbsp;
+  <a href="https://tailcove.dev/register">Get started free</a> &nbsp;·&nbsp;
   <a href="https://www.npmjs.com/package/@tailcove/browser">View on npm</a> &nbsp;·&nbsp;
   <a href="https://github.com/tailcove/browser/issues/new/choose">Report a bug</a>
 </p>
@@ -31,7 +31,7 @@ npm install @tailcove/browser
 
 ## Quick start
 
-**1. Get a browser key.** In your [Tailcove dashboard](https://app.tailcove.dev), open your source's **Settings** tab and create a browser key. Add the websites that may use it under allowed origins.
+**1. Get a browser key.** In your [Tailcove dashboard](https://tailcove.dev), open your source's **Settings** tab and create a browser key. Add the websites that may use it under allowed origins.
 
 > A browser key is **meant to be public**. It ships in your front-end code, so don't treat it like a password. Access is controlled by the allowed origins you set. This is different from the server-side ingest token used by `@tailcove/node`, which must stay secret.
 
@@ -198,7 +198,7 @@ Network errors and non-2xx responses never throw into your page. They go to `onE
 
 <p align="center">
   <a href="https://tailcove.dev/docs/sending-logs/browser">Documentation</a> &nbsp;·&nbsp;
-  <a href="https://app.tailcove.dev/register">Get started free</a> &nbsp;·&nbsp;
+  <a href="https://tailcove.dev/register">Get started free</a> &nbsp;·&nbsp;
   <a href="https://github.com/tailcove/browser/issues/new/choose">Report a bug</a> &nbsp;·&nbsp;
   <a href="LICENSE">MIT License</a>
 </p>
